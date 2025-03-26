@@ -14,8 +14,7 @@ app.get('/download', (req, res) => {
         return res.status(400).json({ erro: "URL não fornecida. Por favor, inclua a URL como parâmetro na query string (?url=...)."});
     }
 
-    // Comando yt-dlp SIMPLIFICADO: apenas -j e a URL
-    const command = `./bin/yt-dlp -j ${url}`;
+    const command = `/usr/bin/python3 /app/bin/yt-dlp -e ${url}`; // Tentativa com caminho absoluto para python3 e yt-dlp
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
