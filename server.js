@@ -7,15 +7,15 @@ app.get('/', (req, res) => {
     res.json({ mensagem: "API REST Node.js funcionando no Render!" });
 });
 
-// Nova rota para testar o yt-dlp (nome correto)
+// Rota /download com comando yt-dlp simplificado
 app.get('/download', (req, res) => {
     const url = req.query.url;
     if (!url) {
         return res.status(400).json({ erro: "URL não fornecida. Por favor, inclua a URL como parâmetro na query string (?url=...)."});
     }
 
-    // Comando yt-dlp (nome correto)
-    const command = `./bin/yt-dlp -j --flat-playlist ${url}`;
+    // Comando yt-dlp SIMPLIFICADO: apenas -j e a URL
+    const command = `./bin/yt-dlp -j ${url}`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
